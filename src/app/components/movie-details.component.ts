@@ -39,6 +39,11 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               {{ genre.name }}
             </span>
           </div>
+
+          <div *ngIf="watchProviders" >
+            <div *ngIf="watchProviders.results['IN']">
+              Find out streaming links <a [href]="watchProviders.results['IN'].link"> here </a>
+          </div>
         </div>
 
         <div class="streaming-section" *ngIf="watchProviders">
@@ -59,7 +64,7 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               </div>
             </ng-container>
 
-            <ng-container *ngIf="watchProviders.results['US'].rent">
+            <ng-container *ngIf="watchProviders.results['IN'].rent">
               <div class="provider-category">
                 <h3>Rent</h3>
                 <div class="provider-list">
@@ -74,7 +79,7 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               </div>
             </ng-container>
 
-            <ng-container *ngIf="watchProviders.results['US'].buy">
+            <ng-container *ngIf="watchProviders.results['IN'].buy">
               <div class="provider-category">
                 <h3>Buy</h3>
                 <div class="provider-list">
