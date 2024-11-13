@@ -40,14 +40,13 @@ import { Movie, WatchProviders } from '../models/movie.interface';
             </span>
           </div>
 
+        <div class="streaming-section" *ngIf="watchProviders">
+          <h2>Where to Watch</h2>
           <div *ngIf="watchProviders" >
             <div *ngIf="watchProviders.results['IN']">
               Find out streaming links <a [href]="watchProviders.results['IN'].link"> here </a>
           </div>
         </div>
-
-        <div class="streaming-section" *ngIf="watchProviders">
-          <h2>Where to Watch</h2>
           <div class="providers-grid" *ngIf="watchProviders.results['IN']; else noProviders">
             <ng-container *ngIf="watchProviders.results['IN'].flatrate">
               <div class="provider-category">
