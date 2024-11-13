@@ -17,18 +17,12 @@ export class MovieService {
     }
   }
 
-  params = {
-    api_key: this.apiKey,
-    include_adult: 'false',
-    include_video: 'false',
-    'sort_by': 'popularity.desc',
-    'region': 'IN',
-    'with_original_language': 'hi|te|en|ta|ml|kn|mr|gu|bn|pa|ur|or|as|ne|sd|si',
-  };
-
   getPopularMovies(): Observable<MovieResponse> {
     return this.http.get<MovieResponse>(`${this.baseUrl}/movie/popular`, {
-      params: this.params
+      params: {
+        api_key: this.apiKey,
+        region: 'IN'
+      }
     }).pipe(
       catchError(this.handleError)
     );
@@ -37,8 +31,9 @@ export class MovieService {
   searchMovies(query: string): Observable<MovieResponse> {
     return this.http.get<MovieResponse>(`${this.baseUrl}/search/movie`, {
       params: {
-        ...this.params,
-        query: query
+        api_key: this.apiKey,
+        query: query,
+        region: 'IN'
       }
     }).pipe(
       catchError(this.handleError)
@@ -47,7 +42,10 @@ export class MovieService {
 
   getMovieDetails(id: number): Observable<Movie> {
     return this.http.get<Movie>(`${this.baseUrl}/movie/${id}`, {
-      params: this.params
+      params: {
+        api_key: this.apiKey,
+        region: 'IN'
+      }
     }).pipe(
       catchError(this.handleError)
     );
@@ -55,7 +53,10 @@ export class MovieService {
 
   getWatchProviders(id: number): Observable<WatchProviders> {
     return this.http.get<WatchProviders>(`${this.baseUrl}/movie/${id}/watch/providers`, {
-      params: this.params
+      params: {
+        api_key: this.apiKey,
+        region: 'IN'
+      }
     }).pipe(
       catchError(this.handleError)
     );

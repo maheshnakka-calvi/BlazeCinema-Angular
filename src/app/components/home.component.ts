@@ -40,10 +40,10 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.searchPopularMovies();
+    this.loadPopularMovies();
   }
 
-  private searchPopularMovies() {
+  private loadPopularMovies() {
     this.loading = true;
     this.error = null;
     this.movieService.getPopularMovies().subscribe({
@@ -72,6 +72,8 @@ export class HomeComponent implements OnInit {
           this.loading = false;
         }
       });
+    } else {
+      this.loadPopularMovies();
     }
   }
 }

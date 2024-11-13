@@ -39,10 +39,21 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               {{ genre.name }}
             </span>
           </div>
+        </div>
 
         <div class="streaming-section" *ngIf="watchProviders">
           <h2>Where to Watch</h2>
           <div class="providers-grid" *ngIf="watchProviders.results['IN']; else noProviders">
+            <a 
+              *ngIf="watchProviders.results['IN'].link"
+              [href]="watchProviders.results['IN'].link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="tmdb-link"
+            >
+              View on TMDB
+            </a>
+
             <ng-container *ngIf="watchProviders.results['IN'].flatrate">
               <div class="provider-category">
                 <h3>Stream</h3>
@@ -62,7 +73,7 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               <div class="provider-category">
                 <h3>Rent</h3>
                 <div class="provider-list">
-                  <div class="provider" *ngFor="let provider of watchProviders.results['US'].rent">
+                  <div class="provider" *ngFor="let provider of watchProviders.results['IN'].rent">
                     <img 
                       [src]="'https://image.tmdb.org/t/p/original' + provider.logo_path"
                       [alt]="provider.provider_name"
@@ -77,7 +88,7 @@ import { Movie, WatchProviders } from '../models/movie.interface';
               <div class="provider-category">
                 <h3>Buy</h3>
                 <div class="provider-list">
-                  <div class="provider" *ngFor="let provider of watchProviders.results['US'].buy">
+                  <div class="provider" *ngFor="let provider of watchProviders.results['IN'].buy">
                     <img 
                       [src]="'https://image.tmdb.org/t/p/original' + provider.logo_path"
                       [alt]="provider.provider_name"
