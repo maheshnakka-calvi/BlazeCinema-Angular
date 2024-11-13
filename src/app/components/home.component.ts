@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   private searchPopularMovies() {
     this.loading = true;
     this.error = null;
-    this.movieService.searchMovies('a').subscribe({
+    this.movieService.getPopularMovies().subscribe({
       next: (response) => {
         this.movies = response.results;
         this.loading = false;
